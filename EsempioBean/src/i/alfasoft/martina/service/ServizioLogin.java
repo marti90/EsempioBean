@@ -12,12 +12,12 @@ public class ServizioLogin {
 	
 	//getTuttiUtenti
 	
-	UtenteDAO uDao = new UtenteDAO();
+	private UtenteDAO uDao = new UtenteDAO();
 	
-	public boolean registraUtente(String nome, String cognome, String username, String password){
+	public boolean registraUtente(UtenteBean u){
 		
 		boolean res = false;
-		UtenteBean u = new UtenteBean(nome,cognome,username,password);
+		//UtenteBean u = new UtenteBean(nome,cognome,username,password);
 		res = uDao.createUtente(u);
 		
 		return res;

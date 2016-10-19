@@ -10,7 +10,7 @@ import it.alfasoft.martina.utility.HibernateUtility;
 
 public class UtenteDAO {
 	
-	//CREATE
+	//1- CREATE
 	public boolean createUtente(UtenteBean u){
 			
 		boolean res = false;
@@ -37,8 +37,35 @@ public class UtenteDAO {
 			
 		return res;
 	}
+	
+	//2.a- READ con username
+	public UtenteBean readUtente(String username){
+			
+		UtenteBean u = null;
+			
+		Session session = HibernateUtility.openSession();
+		Transaction tx = null;
+			
+		try{
+			tx = session.getTransaction();
+			tx.begin();
+			
+			u = session.get(UtenteBean.class, username);
+				
+			tx.commit();
+				
+		}catch(Exception ex){
+			tx.rollback();
+				
+		}finally{
+				session.close();
+				
+		}
 		
-	//READ con id
+		return u;
+	}
+		
+	//2.a- READ con id
 	public UtenteBean readUtente(long id_utente){
 		
 		UtenteBean u = null;
@@ -65,7 +92,7 @@ public class UtenteDAO {
 		return u;
 	}
 	
-	//READ con username e password
+	//2.b- READ con username e password
 	public UtenteBean readUtente(String username, String password){
 		
 		UtenteBean u = null;
@@ -96,7 +123,7 @@ public class UtenteDAO {
 		return u;
 	}
 	
-	//UPDATE
+	//3- UPDATE
 	public boolean updateUtente(UtenteBean u){
 
 		boolean res = false;
@@ -126,7 +153,7 @@ public class UtenteDAO {
 		
 	}
 	
-	//DELETE
+	//4- DELETE
 	public boolean deleteUtente(UtenteBean u){
         
 		boolean res = false;
