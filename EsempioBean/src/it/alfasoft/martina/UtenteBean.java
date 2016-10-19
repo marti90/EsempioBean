@@ -2,16 +2,29 @@ package it.alfasoft.martina;
 
 import java.io.Serializable;
 
-public class UtenteBean implements Serializable{
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
+public class UtenteBean implements Serializable,ValidaDataBean{
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	private long id_utente;
+	
 	private String nome;
 	private String cognome;
 	private String username;
+	
+	@Column(nullable=false)
 	private String password;
 	
 	public UtenteBean(){
@@ -60,6 +73,29 @@ public class UtenteBean implements Serializable{
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
+	}
+	
+	public long getId_utente() {
+		return id_utente;
+	}
+
+	public void setId_utente(long id_utente) {
+		this.id_utente = id_utente;
+	}
+
+	@Override
+	public boolean isValid() {
+		
+		boolean res = false;
+		if((!nome.isEmpty() && nome != null) && 
+				(!cognome.isEmpty() && cognome !=null) &&
+				(!username.isEmpty() && username != null) && 
+				(!password.isEmpty() && password != null)){
+			
+			res = true;
+		}
+		
+		return res;
 	}
 
 }
