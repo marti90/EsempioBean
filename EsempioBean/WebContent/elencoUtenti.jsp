@@ -13,6 +13,9 @@
 <title>Insert title here</title>
 </head>
 <body>  
+
+<jsp:useBean id="utente" class="it.alfasoft.martina.UtenteBean" scope="request"></jsp:useBean>
+<jsp:setProperty property="*" name="utente"/>
 <h1>Elenco Utenti</h1>
 
     <table border="1px">
@@ -27,13 +30,15 @@
          <%
          UtenteDAO uDao = new UtenteDAO();
          int i =1;
-         for(UtenteBean u : uDao.readUtenti()){ %>
+         for(UtenteBean u : uDao.readUtenti()){ 
+         utente.setNome(u.getNome());
+         utente.setCognome(u.getCognome());
+         %>
          
              <tr>
                  <td><%out.println(i);%> </td>
-                 <td>${u.nome}</td>
-                 <td><%=u.getCognome()%> </td>
-          
+                 <td><c:out value="${utente.nome}"></c:out></td>
+                 <td><c:out value="${utente.cognome}"></c:out></td>
          
          <%
          i++;
