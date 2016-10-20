@@ -20,12 +20,12 @@ public class UtenteBean implements Serializable,ValidaDataBean{
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private long id_utente;
 	
-	private String nome;
-	private String cognome;
-	private String username;
+	private String nome="";
+	private String cognome="";
+	private String username="";
 	
 	@Column(nullable=false)
-	private String password;
+	private String password="";
 	
 	public UtenteBean(){
 		

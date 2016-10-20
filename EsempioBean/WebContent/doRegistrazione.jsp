@@ -1,9 +1,9 @@
-<%@page import="i.alfasoft.martina.service.ServizioLogin"%>
+<%@page import="it.alfasoft.martina.service.ServizioLogin"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 
 
-    <jsp:useBean id="utente" class="it.alfasoft.martina.UtenteBean" scope="request"/>
+    <jsp:useBean id="utente" class="it.alfasoft.martina.UtenteBean" scope="session"/>
     <jsp:setProperty property="*" name="utente"/>
     
     
