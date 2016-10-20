@@ -1,5 +1,8 @@
 package it.alfasoft.martina.dao;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -105,7 +108,7 @@ public class UtenteDAO {
 			tx = session.getTransaction();
 			tx.begin();
 			
-			query = session.createQuery("from Utente where username =:usernameInserito and password =:passwordInserita");
+			query = session.createQuery("from UtenteBean where username =:usernameInserito and password =:passwordInserita");
 			query.setString("usernameInserito", username);
 			query.setString("passwordInserita", password);
 			u = (UtenteBean) query.uniqueResult();
@@ -121,6 +124,34 @@ public class UtenteDAO {
 		}
 		
 		return u;
+	}
+	
+	//2.c READ tutti gli utenti della tabella
+    @SuppressWarnings("unchecked")
+	public List<UtenteBean> readUtenti(){
+		
+		List<UtenteBean> utenti = new ArrayList<UtenteBean>();
+		Session session=HibernateUtility.openSession();
+		Transaction tx=null;
+		
+		try{
+	        tx=session.getTransaction();
+	        tx.begin();
+	        
+	        Query query = session.createQuery("from UtenteBean");
+	        utenti= query.list();
+	        
+	        tx.commit(); 
+            
+	    }catch(Exception ex){
+	         tx.rollback();
+
+	    }finally{
+	         session.close();
+	    }
+	    
+		return utenti;
+		
 	}
 	
 	//3- UPDATE
