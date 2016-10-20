@@ -13,8 +13,8 @@
 
      <h1>Login Page</h1>
      
-     <%=error.getErroreLogin() %>
-     
+<%--      <%=error.getErroreLogin() %> --%>
+     <jsp:getProperty property="erroreLogin" name="error"/>
      <form action="doLogin.jsp" method="post">
      
         Username: <input type= "text" name="username"/><br>
