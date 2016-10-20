@@ -1,4 +1,4 @@
-package i.alfasoft.martina.service;
+package it.alfasoft.martina.service;
 
 import java.util.List;
 
