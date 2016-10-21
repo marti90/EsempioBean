@@ -37,12 +37,12 @@
          
              <tr>
                  <td><%out.println(i);%> </td>
-                 <td><c:out value="${utente.nome}"></c:out></td>
+                 <td>${utente.nome}</td>
                  <td><c:out value="${utente.cognome}"></c:out></td>
          
          <%
-         i++;
-         }
+             i++;
+             }
          %>
 
 
